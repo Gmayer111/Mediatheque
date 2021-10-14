@@ -1,5 +1,32 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h2>Hello</h2>
+    <main>
+        <div class="row">
+            <h1 class="text-center m-4">Bienvenue à la médiathèque de la Chapelle Cureaux</h1>
+        </div>
+        <section class="bannerUp">
+            <div class="row">
+                <div class="col-5">
+                    <picture>
+                        <img class="m-3" src="{{ asset('Images/Mediatheque.jpg') }}" alt="Photo de la médiathèque">
+                    </picture>
+                </div>
+                <div class="col-7">
+                    <p class="text-left mt-5 m-3">Au tournant du 6e siècle, le roi franc Clovis, récemment converti au christianisme,
+                        fait construire sur une colline de Lutèce une basilique dédiée aux saints Pierre et Paul
+                        dans laquelle il sera inhumé au côté de sa femme Clotilde. Ils y sont en 512 rejoints par
+                        sainte Geneviève, très vénérée patronne des Parisiens dont le vocable s’impose dès le
+                        9e siècle : il désigne tout à la fois la basilique et l’abbaye bénédictine qui se développe
+                        rapidement autour d’elle, et dont on peut encore admirer le clocher du 14e siècle
+                        (appelé aujourd’hui « tour Clovis » en référence à cette antique fondation) dans
+                        l’enceinte de l’actuel lycée Henri IV. Ce double patronage, hagiographique et
+                        royal, marquera au long des siècles l’histoire de l’institution.</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
 {% endblock %}

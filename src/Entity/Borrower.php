@@ -31,11 +31,19 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $firstname;
 
+
     /**
      * @Assert\NotBlank(message="Veuillez renseigner votre nom")
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
+
+    /**
+     * @Assert\NotBlank(message="Veuillez renseigner votre adresse")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $address;
+
 
     /**
      *
@@ -120,6 +128,24 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->lastname = $lastname;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address): void
+    {
+        $this->address = $address;
+    }
+
+
 
     /**
      * @return mixed

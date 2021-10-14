@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre profil{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="row">
+            <h1>Votre profil</h1>
+        </div>
+        <section class="profile-img">
+            <div class="row">
+                <div class="col-3">
+                    <picture>
+                        <img class="m-3" src="{{ asset('Images/Mediatheque.jpg') }}" alt="Photo de votre profil">
+                    </picture>
+                </div>
+                <div class="col-5">
+                    HELLO
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
