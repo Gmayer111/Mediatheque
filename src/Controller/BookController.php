@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Form\BookType;
+use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,5 +42,19 @@ class BookController extends AbstractController
         return $this->render("Book/create.html.twig", [
             "form" => $form->createView()
         ]);
+    }
+
+
+
+
+
+
+    /**@Route ("/book/{id}", methods={GET}, name="read_book")
+     * @return Response
+     */
+    public function readOne(int $id): Response
+    {
+        $repo = $this->getDoctrine()->getRepository(BookRepository::class);
+        $book = $repo->find($id);
     }
 }
