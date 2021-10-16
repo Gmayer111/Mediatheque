@@ -16,16 +16,18 @@
     </head>
     <body>
         <header>
-            <div class="container-fluid row mt-3">
-                <div class="col-3 text-center">
-                    <a class="navbar-brand" href="#">Médiathèque <br> de la Chapelle-Cureaux</a>
+            <div class="container-fluid row">
+                <div class="col-3 text-center mt-5">
+                    <a class="navbar-brand" href="/">Médiathèque <br> de la Chapelle-Cureaux</a>
                 </div>
+                {% if is_granted("ROLE_USER") %}
                 <div class="col-4">
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Trouver un livres" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Rechercher</button>
                     </form>
                 </div>
+                {% endif %}
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center shadow bg-light">
@@ -36,21 +38,25 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav justify-content-around">
+
                                     {% if is_granted("ROLE_USER") %}
                                     <li class="nav-item px-5">
-                                        <a class="nav-link active" aria-current="page" href="#">Profil</a>
+                                        <a class="nav-link active" aria-current="page" href="/borrower">Profil</a>
                                     </li>
                                     {% endif %}
+                                    {% if is_granted("ROLE_BORROWER") %}
+                                        <li class="nav-item px-5">
+                                            <a class="nav-link active" aria-current="page" href="/borrowed-book">Livres empruntés</a>
+                                        </li>
+                                    {% endif %}
+
                                     <li class="nav-item px-5">
-                                        <a class="nav-link active" aria-current="page" href="#">La médiathèque</a>
-                                    </li>
-                                    <li class="nav-item px-5">
-                                        <a class="nav-link" href="#">Nos livres</a>
+                                        <a class="nav-link active" aria-current="page" href="/">La médiathèque</a>
                                     </li>
                                     <li class="nav-item px-5">
                                         <a class="nav-link" href="#">Infos pratiques</a>
                                     </li>
-                                    <form action="/login" class="d-flex px-5">
+                                    <form action="/login-borrower" class="d-flex px-5">
                                         <button class="btn btn-outline-success" type="submit">Connexion</button>
                                     </form>
                                 </ul>

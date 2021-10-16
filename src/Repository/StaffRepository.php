@@ -36,6 +36,19 @@ class StaffRepository extends ServiceEntityRepository implements PasswordUpgrade
         $this->_em->flush();
     }
 
+    public function loadUserByIdentifier(string $usernameOrEmail): ?Staff
+    {
+        $entityManager = $this->getEntityManager();
+
+        return $entityManager->createQuery(
+            'SELECT u
+                FROM App\Entity\Staff
+                WHERE u.username = :query'
+        )
+            ->setParameter('query', $usernameOrEmail)
+            ->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Staff[] Returns an array of Staff objects
     //  */

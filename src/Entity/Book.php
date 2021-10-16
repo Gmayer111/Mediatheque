@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,13 +49,13 @@ class Book
     private $genre;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $availability;
 
     /**
      * @ORM\ManyToOne(targetEntity=Catalogue::class, inversedBy="book_id")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $catalogue;
 
@@ -111,12 +112,12 @@ class Book
         return $this;
     }
 
-    public function getPublicationDate(): ?\DateTimeInterface
+    public function getPublicationDate(): ?DateTimeInterface
     {
         return $this->publication_date;
     }
 
-    public function setPublicationDate(\DateTimeInterface $publication_date): self
+    public function setPublicationDate(DateTimeInterface $publication_date): self
     {
         $this->publication_date = $publication_date;
 
@@ -142,6 +143,7 @@ class Book
 
     public function setAvailability(bool $availability): self
     {
+
         $this->availability = $availability;
 
         return $this;
@@ -154,6 +156,7 @@ class Book
 
     public function setCatalogue(?Catalogue $catalogue): self
     {
+
         $this->catalogue = $catalogue;
 
         return $this;

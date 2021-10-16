@@ -15,9 +15,9 @@ class BorrowerController extends AbstractController
     /**
      * @Route("/borrower", name="borrower")
      */
-       public function index(): Response
+       public function profil(): Response
        {
-           return $this->render('borrower/index.html.twig', [
+           return $this->render('borrower/profil.html.twig', [
                'controller_name' => 'BorrowerController',
            ]);
        }
@@ -30,7 +30,7 @@ class BorrowerController extends AbstractController
      */
        public function register(Request $request, UserPasswordHasherInterface $passwordHasher)
        {
-           // COnstruction du formulaire
+           // Construction du formulaire
            $borrower = new Borrower();
            $form = $this->createForm(BorrowerType::class, $borrower);
 

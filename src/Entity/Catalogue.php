@@ -24,6 +24,11 @@ class Catalogue
      */
     private $book_id;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $catalogue_name;
+
     public function __construct()
     {
         $this->book_id = new ArrayCollection();
@@ -63,4 +68,22 @@ class Catalogue
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCatalogueName()
+    {
+        return $this->catalogue_name;
+    }
+
+    /**
+     * @param mixed $catalogue_name
+     */
+    public function setCatalogueName($catalogue_name): void
+    {
+        $this->catalogue_name = $catalogue_name;
+    }
+
+
 }

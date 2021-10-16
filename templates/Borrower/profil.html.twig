@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre profil{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="row">
+            <h1 class="text-center mt-3">Votre profil</h1>
+        </div>
+        <section class="profile-img">
+            <div class="row d-flex justify-content-center">
+                <div class="col-3">
+                    <picture>
+                        <img class="m-3 rounded-circle" src="{{ asset('Images/profil.png') }}" alt="Photo de votre profil">
+                    </picture>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-3">
+                        <ul>
+                            <li>Prénom : {{ app.user.firstname }}</li>
+                            <li>Nom : {{ app.user.lastname }}</li>
+                            <li>mail : {{ app.user.email }}</li>
+                            <li>adresse : {{ app.user.address }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+{% endblock %}

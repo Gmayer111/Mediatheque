@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container mb-4">
+        <h2 class="mb-5 mt-3 text-center">Ajouter un livre</h2>
+        {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.author) }}
+        {{ form_row(form.publication_date) }}
+        {{ form_row(form.genre) }}
+        {{ form_row(form.catalogue) }}
+        {{ form_row(form.picture) }}
+        <label for="catalogue">Catalogue</label>
+        <select id="catalogue" name="catalogue">
+        <input type="submit" value="Confirmer" class="btn btn-primary mt-3">
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
