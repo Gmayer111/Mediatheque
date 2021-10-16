@@ -49,7 +49,8 @@ class BookController extends AbstractController
 
 
 
-    /**@Route ("/book/{id}", methods={GET}, name="read_book")
+ /*   /**
+     * @Route ("/book/{id}", methods={GET}, name="read_book")
      * @return Response
      */
     public function readOne(int $id): Response
