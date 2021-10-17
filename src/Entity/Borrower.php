@@ -91,11 +91,14 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     * @see UserInterface
      */
     public function getUsername(): string
     {
         return (string) $this->email;
     }
+
+
 
     /**
      * @return mixed
@@ -218,4 +221,6 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+
 }

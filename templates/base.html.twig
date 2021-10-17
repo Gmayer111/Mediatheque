@@ -2,29 +2,32 @@
 <html lang="fr_FR">
     <head>
         <meta charset="UTF-8">
-        <meta name="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Médiathèque de la Chapelle Cureaux">
+        <meta name="keywords" content="Symfony, bootstrap">
+        <meta name="author" content="Gael Mayer">
         <title>{% block title %}Médiathèque CP{% endblock %}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/layout.css') }}"/>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {#{% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}#}
     </head>
     <body>
         <header>
-            <div class="container-fluid row">
-                <div class="col-3 text-center mt-5">
+            <div class="container-fluid row d-flex justify-content-between">
+                <div class="col-3 text-center mt-4">
                     <a class="navbar-brand" href="/">Médiathèque <br> de la Chapelle-Cureaux</a>
                 </div>
                 {% if is_granted("ROLE_USER") %}
-                <div class="col-4">
+                <div class="col-4 mt-5">
                     <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Trouver un livres" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                        <input class="form-control" type="search" placeholder="Trouver un livres" aria-label="Search">
+                        <button class="btn btn-outline-success ml-2" type="submit">Rechercher</button>
                     </form>
                 </div>
                 {% endif %}
@@ -44,21 +47,27 @@
                                         <a class="nav-link active" aria-current="page" href="/borrower">Profil</a>
                                     </li>
                                     {% endif %}
-                                    {% if is_granted("ROLE_BORROWER") %}
-                                        <li class="nav-item px-5">
-                                            <a class="nav-link active" aria-current="page" href="/borrowed-book">Livres empruntés</a>
-                                        </li>
-                                    {% endif %}
-
                                     <li class="nav-item px-5">
                                         <a class="nav-link active" aria-current="page" href="/">La médiathèque</a>
                                     </li>
+                                    {% if is_granted("ROLE_USER") %}
+                                    <li class="nav-item px-5">
+                                        <a class="nav-link active" aria-current="page" href="/catalogue">Catalogue</a>
+                                    </li>
+                                    {% endif %}
                                     <li class="nav-item px-5">
                                         <a class="nav-link" href="#">Infos pratiques</a>
                                     </li>
-                                    <form action="/login-borrower" class="d-flex px-5">
-                                        <button class="btn btn-outline-success" type="submit">Connexion</button>
-                                    </form>
+                                    {% if is_granted("ROLE_USER") %}
+                                        <form action="" class="d-flex px-5">
+                                            <button class="btn btn-outline-success" type="submit">Déconnexion</button>
+                                        </form>
+                                    {% else %}
+                                        <form action="" class="d-flex px-5">
+                                            <button class="btn btn-outline-success" type="submit">Connexion</button>
+                                        </form>
+                                    {% endif %}
+
                                 </ul>
                             </div>
                         </div>
@@ -66,19 +75,23 @@
                 </div>
             </div>
         </header>
-        {% block body %}{% endblock %}
+        {% block body %}
+            <main>
+            </main>
+        {% endblock %}
     <footer>
         <div class="row bg-success">
             <div class="col-5 m-5">
                 INFOS PRATIQUES
             </div>
             <div class="col-5 m-5">
-                <form action="/login-staff" class="d-flex px-5">
+                <form action="" class="d-flex px-5">
                     <button class="btn btn-primary" type="submit">ESPACE PRO</button>
                 </form>
             </div>
         </div>
     </footer>
-        {#{% block javascripts %} {{ encore_entry_script_tags('app') }} {% endblock %}#}
     </body>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </html>
