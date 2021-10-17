@@ -15,13 +15,13 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        return parent::index();
+        return $this->render('admin/dashboard.html.twig');
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Mediatheque');
+            ->setTitle('Admin Mediatheque');
     }
 
     public function configureMenuItems(): iterable
