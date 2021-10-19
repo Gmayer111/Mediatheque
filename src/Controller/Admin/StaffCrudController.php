@@ -2,17 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Borrower;
+use App\Entity\Staff;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class BorrowerCrudController extends AbstractCrudController
+class StaffCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Borrower::class;
+        return Staff::class;
     }
 
     /*

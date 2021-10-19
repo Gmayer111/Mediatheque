@@ -5,12 +5,14 @@
 {% block body %}
     <main class="container mb-4">
         <div class="row">
+
             <div class="col-4 border-right mt-4">
                 <h1 class="text-center mb-4">{{ book.title }}</h1>
                 <div class="d-flex justify-content-center">
                     <img class="rounded bookImg" src="/images/books/{{ book.filename }}" alt="Image du livre {{ book.title }}" style="width: 300px; height: 300px;">
                 </div>
             </div>
+
             <div class="col-4 d-flex flex-column justify-content-around border-right mt-4">
                 <div class="d-flex justify-content-center mt-3">
                     <ul>
@@ -22,16 +24,15 @@
 
                 <div class="d-flex justify-content-center">
                     {% if book.availability is same as 1 %}
-                    <form action="/update-book">
+                    <form action="/update-book/{{ book.id }}/{{ app.user.id }}">
                         <input class="btn btn-primary" type="submit" value="Emprunter">
                     </form>
                     {% endif %}
                 </div>
-
             </div>
 
             <div class="col-4 d-flex flex-column justify-content-center">
-                <p class="">Description : {{ book.description }}</p>
+                <p>Description : {{ book.description }}</p>
             </div>
         </div>
     </main>

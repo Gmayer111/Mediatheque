@@ -63,11 +63,12 @@ class Staff implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->username;
     }
 
-    public function setUsername(string $username): self
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
     {
         $this->username = $username;
-
-        return $this;
     }
 
     /**

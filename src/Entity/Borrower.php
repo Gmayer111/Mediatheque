@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BorrowerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -21,9 +23,14 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
      */
     private $email;
+
+    /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $username;
 
     /**
      * @Assert\NotBlank(message="Veuillez renseigner votre prénom")
@@ -62,6 +69,16 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="borrower_id")
+     */
+    private $book_id;
+
+    public function __construct()
+    {
+        $this->book_id = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,8 +103,18 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
+
+
 
     /**
      * @deprecated since Symfony 5.3, use getUserIdentifier instead
@@ -95,7 +122,7 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
 
@@ -220,6 +247,41 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection|Book[]
+     */
+    public function getBookId(): Collection
+    {
+        return $this->book_id;
+    }
+
+    public function addBookId(Book $bookId): self
+    {
+        if (!$this->book_id->contains($bookId)) {
+            $this->book_id[] = $bookId;
+            $bookId->setBorrowerId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookId(Book $bookId): self
+    {
+        if ($this->book_id->removeElement($bookId)) {
+            // set the owning side to null (unless already changed)
+            if ($bookId->getBorrowerId() === $this) {
+                $bookId->setBorrowerId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->username;
     }
 
 

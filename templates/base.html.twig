@@ -42,7 +42,7 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav justify-content-around">
 
-                                    {% if is_granted("ROLE_USER") %}
+                                    {% if is_granted("ROLE_USER") and not is_granted("ROLE_BORROWER") %}
                                     <li class="nav-item px-5">
                                         <a class="nav-link active" aria-current="page" href="/borrower">Profil</a>
                                     </li>
@@ -58,16 +58,20 @@
                                     <li class="nav-item px-5">
                                         <a class="nav-link" href="#">Infos pratiques</a>
                                     </li>
+                                    {% if is_granted("ROLE_BORROWER") %}
+                                        <li class="nav-item px-5">
+                                            <a class="nav-link active" aria-current="page" href="/admin">Administration</a>
+                                        </li>
+                                    {% endif %}
                                     {% if is_granted("ROLE_USER") %}
-                                        <form action="" class="d-flex px-5">
+                                        <form action="/logout" class="d-flex px-5">
                                             <button class="btn btn-outline-success" type="submit">Déconnexion</button>
                                         </form>
                                     {% else %}
-                                        <form action="" class="d-flex px-5">
+                                        <form action="/login" class="d-flex px-5">
                                             <button class="btn btn-outline-success" type="submit">Connexion</button>
                                         </form>
                                     {% endif %}
-
                                 </ul>
                             </div>
                         </div>
@@ -83,11 +87,6 @@
         <div class="row bg-success">
             <div class="col-5 m-5">
                 INFOS PRATIQUES
-            </div>
-            <div class="col-5 m-5">
-                <form action="" class="d-flex px-5">
-                    <button class="btn btn-primary" type="submit">ESPACE PRO</button>
-                </form>
             </div>
         </div>
     </footer>
