@@ -26,7 +26,7 @@ class BorrowerCrudController extends AbstractCrudController
     }
     */
 
-    public function configureActions(Actions $actions): Actions
+/*    public function configureActions(Actions $actions): Actions
     {
         return $actions
             // ...
@@ -34,5 +34,5 @@ class BorrowerCrudController extends AbstractCrudController
             ->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
             ->disable(Action::DELETE)
             ;
-    }
+    }*/
 }
