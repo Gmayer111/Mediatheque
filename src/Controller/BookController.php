@@ -30,19 +30,19 @@ class BookController extends AbstractController
 
 
     /**
-     * @Route("/update-book/{id}/{userid}")
+     * @Route("/update-book/{id}/{userUn}")
      * @param EntityManagerInterface $em
      * @param BookRepository $bookRepository
      * @param int $id
-     * @param int $userid
+     * @param string $userUn
      * @return Response
      */
-    public function updateBorrowerId(EntityManagerInterface $em, BookRepository $bookRepository, int $id, int $userid): Response
+    public function updateBorrowerId(EntityManagerInterface $em, BookRepository $bookRepository, int $id, string $userUn): Response
     {
 
         $book = $bookRepository->findOneByid($id);
         dump($id);
-        $book->setBorrowerId($userid);
+        $book->setBorrowerUn($userUn);
         $book->setAvailability(2);
         $em->flush();
 

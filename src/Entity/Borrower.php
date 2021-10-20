@@ -29,6 +29,7 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="borrower_un")
      */
     private $username;
 
@@ -69,10 +70,7 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="borrower_id")
-     */
-    private $book_id;
+
 
     public function __construct()
     {
@@ -107,22 +105,19 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
      * @param mixed $username
      */
     public function setUsername($username): void
     {
         $this->username = $username;
-    }
-
-
-
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     * @see UserInterface
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->username;
     }
 
 
@@ -254,14 +249,14 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getBookId(): Collection
     {
-        return $this->book_id;
+        return $this->username;
     }
 
     public function addBookId(Book $bookId): self
     {
-        if (!$this->book_id->contains($bookId)) {
-            $this->book_id[] = $bookId;
-            $bookId->setBorrowerId($this);
+        if (!$this->username->contains($bookId)) {
+            $this->username[] = $bookId;
+            $bookId->setBorrowerUn($this);
         }
 
         return $this;
@@ -269,10 +264,10 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeBookId(Book $bookId): self
     {
-        if ($this->book_id->removeElement($bookId)) {
+        if ($this->username->removeElement($bookId)) {
             // set the owning side to null (unless already changed)
-            if ($bookId->getBorrowerId() === $this) {
-                $bookId->setBorrowerId(null);
+            if ($bookId->getBorrowerUn() === $this) {
+                $bookId->setBorrowerUn(null);
             }
         }
 

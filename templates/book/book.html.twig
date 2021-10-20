@@ -23,8 +23,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    {% if book.availability is same as 1 %}
-                    <form action="/update-book/{{ book.id }}/{{ app.user.id }}">
+                    {% if book.availability is same as '1' %}
+                    <form action="/update-book/{{ book.id }}/{{ app.user.username }}">
                         <input class="btn btn-primary" type="submit" value="Emprunter">
                     </form>
                     {% endif %}

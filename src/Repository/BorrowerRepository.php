@@ -36,6 +36,15 @@ class BorrowerRepository extends ServiceEntityRepository implements PasswordUpgr
         $this->_em->flush();
     }
 
+/*    public function changeRole()
+    {
+        $borrower = new Borrower();
+
+        if (validation === 'valider') {
+            $borrower->getRoles() = ROLE_USER
+        }
+    }*/
+
     // /**
     //  * @return Borrower[] Returns an array of Borrower objects
     //  */
