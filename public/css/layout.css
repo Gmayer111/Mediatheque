@@ -2,11 +2,11 @@ body {
     font-size: 16px;
 }
 
-h1, h2, h3, h4, a, li {
+h1, h2, h3, h4, a, li, span {
     font-family: "Ubuntu Condensed", Quicksand, serif;
 }
 
-a, li {
+a, li, span {
     font-size: 1.1em;
 }
 

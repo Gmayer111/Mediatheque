@@ -41,12 +41,21 @@ class BookController extends AbstractController
     {
 
         $book = $bookRepository->findOneByid($id);
-        dump($id);
         $book->setBorrowerUn($userUn);
         $book->setAvailability(2);
         $em->flush();
 
-        dump($id);
-        return new Response('book/book.html.twig');
+        return $this->render('book/book.html.twig', [
+            'book' => $book,
+        ]);
+        //return new Response('book/book.html.twig');
+    }
+
+    /**
+     * @Route("/search")
+     */
+    public function recherche()
+    {
+        echo 'ok';
     }
 }

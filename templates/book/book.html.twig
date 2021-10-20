@@ -24,10 +24,11 @@
 
                 <div class="d-flex justify-content-center">
                     {% if book.availability is same as '1' %}
-                    <form action="/update-book/{{ book.id }}/{{ app.user.username }}">
-                        <input class="btn btn-primary" type="submit" value="Emprunter">
+                    <form action="/update-book/{{ book.id }}/{{ app.user.username }}" onsubmit="return confirm()">
+                        <input class="btn btn-primary" id="emprunt" type="submit" value="Emprunter">
                     </form>
                     {% endif %}
+
                 </div>
             </div>
 
@@ -35,5 +36,6 @@
                 <p>Description : {{ book.description }}</p>
             </div>
         </div>
+        <script src="{{ asset('js/confirm.js') }}"></script>
     </main>
 {% endblock %}

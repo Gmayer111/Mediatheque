@@ -26,9 +26,12 @@
                 {% if is_granted("ROLE_USER") %}
                 <div class="col-4 mt-5">
                     <form class="d-flex">
-                        <input class="form-control" type="search" placeholder="Trouver un livres" aria-label="Search">
+                        <input class="form-control" type="text" id="search-book" placeholder="Rechercher un livre ..." aria-label="Search">
                         <button class="btn btn-outline-success ml-2" type="submit">Rechercher</button>
                     </form>
+                    <div style="margin-top: 10px;">
+                        <div id="result"></div>
+                    </div>
                 </div>
                 {% endif %}
             </div>
@@ -42,7 +45,7 @@
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav justify-content-around">
 
-                                    {% if is_granted("ROLE_USER") and not is_granted("ROLE_BORROWER") %}
+                                    {% if is_granted("ROLE_BORROWER") and not is_granted("ROLE_ADMIN") %}
                                     <li class="nav-item px-5">
                                         <a class="nav-link active" aria-current="page" href="/borrower">Profil</a>
                                     </li>
@@ -50,7 +53,7 @@
                                     <li class="nav-item px-5">
                                         <a class="nav-link active" aria-current="page" href="/">La médiathèque</a>
                                     </li>
-                                    {% if is_granted("ROLE_USER") %}
+                                    {% if is_granted("ROLE_BORROWER") %}
                                     <li class="nav-item px-5">
                                         <a class="nav-link active" aria-current="page" href="/catalogue">Catalogue</a>
                                     </li>
@@ -58,12 +61,12 @@
                                     <li class="nav-item px-5">
                                         <a class="nav-link" href="#">Infos pratiques</a>
                                     </li>
-                                    {% if is_granted("ROLE_BORROWER") %}
+                                    {% if is_granted("ROLE_ADMIN") %}
                                         <li class="nav-item px-5">
                                             <a class="nav-link active" aria-current="page" href="/admin">Administration</a>
                                         </li>
                                     {% endif %}
-                                    {% if is_granted("ROLE_USER") %}
+                                    {% if is_granted("ROLE_BORROWER") %}
                                         <form action="/logout" class="d-flex px-5">
                                             <button class="btn btn-outline-success" type="submit">Déconnexion</button>
                                         </form>
@@ -84,13 +87,52 @@
             </main>
         {% endblock %}
     <footer>
-        <div class="row bg-success">
-            <div class="col-5 m-5">
-                INFOS PRATIQUES
+        <div class="row bg-info">
+            <div class="col-5 m-5 d-flex flex-column align-items-center">
+                <h4 class="text-center">Médiathèque de la Chapelle Cureaux</h4>
+                <ul class="mt-2">
+                    <li>Place de l'Hôtel de ville</li>
+                    <li>568990 La Chapelle Cureaux</li>
+                    <li><a href="tel:(0)2 97 60 70 10">(0)2 97 60 70 10</a>Tél : +33(0)2 97 60 70 10</li>
+                </ul>
+            </div>
+            <div class="col-4 m-5">
+                <h4 class="text-center">Horaires d'ouverture</h4>
+                <span class="mt-2">L’accueil général est ouvert du lundi au vendredi de 8h30 à 12h et de 13h30 à 17h30.
+                    Le samedi de 8h30 à 12h.</span>
+
             </div>
         </div>
     </footer>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+           $('#search-book').keyup(function () {
+
+               let book = $(this).val();
+
+               if (book !== "") {
+                   $.ajax({
+                       type: 'GET',
+                       url: '/search',
+                       data: 'book=' + encodeURIComponent(book),
+                       success: function (data) {
+                           if (data !== "") {
+                                $('#result').append(data);
+                           }else {
+                                document.getElementById('result').innerHTML = "<div style='font-size: 2em; margin-top: 10px;'>Aucun utilisateur</div>"
+                           }
+                           console.log(book);
+                       }
+
+
+                   })
+               }
+           })
+        });
+
+    </script>
 </html>

@@ -28,36 +28,36 @@
                 </div>
                 <div class="col-md-6 d-flex flex-column align-items-center">
                     <h2>Vos réservation en cours</h2>
+                    {% for book in books %}
+                    {# % if book.borrower_un is same as app.user.username  %} #}
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Livre</th>
+                            <th scope="col">Auteur</th>
+                            <th scope="col">Couverture</th>
                         </tr>
                         </thead>
                         <tbody>
+
                         <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <td>{{ book.title }}</td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
+                            <td>{{ book.author }}</td>
                         </tr>
                         <tr>
                             <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
+                            <td>{{ book.filename }}</td>
                         </tr>
+
                         </tbody>
                     </table>
+                    {#% endif %#}
+                    {% endfor %}
                 </div>
             </div>
         </section>

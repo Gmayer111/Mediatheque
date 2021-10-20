@@ -70,6 +70,11 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $isChecked = 0;
+
 
 
     public function __construct()
@@ -197,7 +202,7 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_BORROWER';
 
         return array_unique($roles);
     }
@@ -277,6 +282,18 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->username;
+    }
+
+    public function getIsChecked(): ?bool
+    {
+        return $this->isChecked;
+    }
+
+    public function setIsChecked(?bool $isChecked): self
+    {
+        $this->isChecked = $isChecked;
+
+        return $this;
     }
 
 

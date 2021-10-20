@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\Borrower;
 use App\Form\BorrowerType;
+use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +16,15 @@ class BorrowerController extends AbstractController
 {
     /**
      * @Route("/borrower", name="borrower")
+
+     * @return Response
      */
        public function profil(): Response
        {
+           $repo = $this->getDoctrine()->getRepository(Book::class);
+           $books = $repo->findAll();
            return $this->render('borrower/profil.html.twig', [
+               "books" => $books,
                'controller_name' => 'BorrowerController',
            ]);
        }
