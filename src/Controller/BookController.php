@@ -41,7 +41,7 @@ class BookController extends AbstractController
     {
 
         $book = $bookRepository->findOneByid($id);
-        $book->setBorrowerUn($userUn);
+        $book->setBorrower($userUn);
         $book->setAvailability(2);
         $em->flush();
 

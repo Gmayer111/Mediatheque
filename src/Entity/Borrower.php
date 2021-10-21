@@ -29,7 +29,7 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="borrower_un")
+     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="borrower")
      */
     private $username;
 

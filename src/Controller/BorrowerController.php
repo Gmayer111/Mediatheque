@@ -21,6 +21,8 @@ class BorrowerController extends AbstractController
      */
        public function profil(): Response
        {
+
+
            $repo = $this->getDoctrine()->getRepository(Book::class);
            $books = $repo->findAll();
            return $this->render('borrower/profil.html.twig', [
