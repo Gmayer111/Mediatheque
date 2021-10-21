@@ -25,7 +25,7 @@ class BorrowerController extends AbstractController
 
            $repo = $this->getDoctrine()->getRepository(Book::class);
            $books = $repo->findAll();
-           return $this->render('borrower/profil.html.twig', [
+           return $this->render('Borrower/profil.html.twig', [
                "books" => $books,
                'controller_name' => 'BorrowerController',
            ]);
