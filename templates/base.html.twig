@@ -7,12 +7,14 @@
         <meta name="keywords" content="Symfony, bootstrap">
         <meta name="author" content="Gael Mayer">
         <title>{% block title %}Médiathèque CP{% endblock %}</title>
+        {% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}
+        {% block javascripts %} {{ encore_entry_script_tags('app') }} {% endblock %}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
-        <link rel="stylesheet" href="{{ asset('css/layout.css') }}"/>
+{#        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/layout.css') }}"/>#}
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {#{% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}#}
@@ -105,34 +107,12 @@
         </div>
     </footer>
     </body>
+{#
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+#}
+    {#<script src="{{ asset('js/jquery.min.js') }}"></script>#}
+{#
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-           $('#search-book').keyup(function () {
+#}
 
-               let book = $(this).val();
-
-               if (book !== "") {
-                   $.ajax({
-                       type: 'GET',
-                       url: '/search',
-                       data: 'book=' + encodeURIComponent(book),
-                       success: function (data) {
-                           if (data !== "") {
-                                $('#result').append(data);
-                           }else {
-                                document.getElementById('result').innerHTML = "<div style='font-size: 2em; margin-top: 10px;'>Aucun utilisateur</div>"
-                           }
-                           console.log(book);
-                       }
-
-
-                   })
-               }
-           })
-        });
-
-    </script>
 </html>
