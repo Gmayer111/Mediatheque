@@ -51,11 +51,4 @@ class BookController extends AbstractController
         //return new Response('book/book.html.twig');
     }
 
-    /**
-     * @Route("/search")
-     */
-    public function recherche()
-    {
-        echo 'ok';
-    }
 }
