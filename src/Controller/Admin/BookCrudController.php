@@ -34,7 +34,7 @@ class BookCrudController extends AbstractCrudController
             TextField::new('genre'),
             ChoiceField::new('availability', 'Disponibilité')->setChoices(['disponible' => "1", 'non disponible' => '0']),
             DateTimeField::new('publication_date')->hideOnIndex(),
-            HiddenField::new('borrower_un', 'Emprunté par..'),
+            HiddenField::new('borrower', 'Emprunté par..'),
             TextField::new('picture')->setFormType(VichImageType::class)->hideOnIndex(),
             ImageField::new('filename', 'Couverture')->setBasePath('/images/books')->onlyOnIndex(),
         ];
@@ -54,7 +54,7 @@ class BookCrudController extends AbstractCrudController
     {
         return $filters
             ->add('filename')
-            ->add('borrower_un')
+            ->add('borrower')
             ;
     }
 
