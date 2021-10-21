@@ -7,39 +7,20 @@
         <meta name="keywords" content="Symfony, bootstrap">
         <meta name="author" content="Gael Mayer">
         <title>{% block title %}Médiathèque CP{% endblock %}</title>
-        {% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}
-        {% block javascripts %} {{ encore_entry_script_tags('app') }} {% endblock %}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">
+        {% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}
 {#        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/layout.css') }}"/>#}
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {#{% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}#}
     </head>
     <body>
         <header>
-            <div class="container-fluid row d-flex justify-content-between">
-                <div class="col-3 text-center mt-4">
-                    <a class="navbar-brand" href="/">Médiathèque <br> de la Chapelle-Cureaux</a>
-                </div>
-                {% if is_granted("ROLE_USER") %}
-                <div class="col-4 mt-5">
-                    <form class="d-flex">
-                        <input class="form-control" type="text" id="search-book" placeholder="Rechercher un livre ..." aria-label="Search">
-                        <button class="btn btn-outline-success ml-2" type="submit">Rechercher</button>
-                    </form>
-                    <div style="margin-top: 10px;">
-                        <div id="result"></div>
-                    </div>
-                </div>
-                {% endif %}
-            </div>
             <div class="row">
-                <div class="col-12 d-flex justify-content-center shadow bg-light">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="d-flex justify-content-center bg-dark">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+                        <a class="navbar-brand text-center mt-2 text-white" href="/">LA CHAPELLE CUREAUX</a>
                         <div class="container-fluid">
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
@@ -49,23 +30,23 @@
 
                                     {% if is_granted("ROLE_BORROWER") and not is_granted("ROLE_ADMIN") %}
                                     <li class="nav-item px-5">
-                                        <a class="nav-link active" aria-current="page" href="/borrower">Profil</a>
+                                        <a class="nav-link active text-white" aria-current="page" href="/borrower">Profil</a>
                                     </li>
                                     {% endif %}
                                     <li class="nav-item px-5">
-                                        <a class="nav-link active" aria-current="page" href="/">La médiathèque</a>
+                                        <a class="nav-link active text-white" aria-current="page" href="/">MEDIATHEQUE</a>
                                     </li>
                                     {% if is_granted("ROLE_BORROWER") %}
                                     <li class="nav-item px-5">
-                                        <a class="nav-link active" aria-current="page" href="/catalogue">Catalogue</a>
+                                        <a class="nav-link active text-white" aria-current="page" href="/catalogue">Catalogue</a>
                                     </li>
                                     {% endif %}
                                     <li class="nav-item px-5">
-                                        <a class="nav-link" href="#">Infos pratiques</a>
+                                        <a class="nav-link text-white" href="#">UTILE</a>
                                     </li>
                                     {% if is_granted("ROLE_ADMIN") %}
                                         <li class="nav-item px-5">
-                                            <a class="nav-link active" aria-current="page" href="/admin">Administration</a>
+                                            <a class="nav-link active text-white" aria-current="page" href="/admin">Administration</a>
                                         </li>
                                     {% endif %}
                                     {% if is_granted("ROLE_BORROWER") %}
@@ -74,7 +55,7 @@
                                         </form>
                                     {% else %}
                                         <form action="/login" class="d-flex px-5">
-                                            <button class="btn btn-outline-success" type="submit">Connexion</button>
+                                            <button class="btn btn-warning" type="submit">Connexion</button>
                                         </form>
                                     {% endif %}
                                 </ul>
@@ -90,29 +71,21 @@
         {% endblock %}
     <footer>
         <div class="row bg-info">
-            <div class="col-5 m-5 d-flex flex-column align-items-center">
+            <div class="col-6 col-md-5 m-5 d-flex flex-column align-items-center">
                 <h4 class="text-center">Médiathèque de la Chapelle Cureaux</h4>
                 <ul class="mt-2">
                     <li>Place de l'Hôtel de ville</li>
                     <li>568990 La Chapelle Cureaux</li>
-                    <li><a href="tel:(0)2 97 60 70 10">(0)2 97 60 70 10</a>Tél : +33(0)2 97 60 70 10</li>
+                    <li><a href="tel:(0)2 97 60 70 10">Tél : +33(0)2 97 60 70 10</a></li>
                 </ul>
             </div>
-            <div class="col-4 m-5">
+            <div class="col-7 col-md-4 m-5">
                 <h4 class="text-center">Horaires d'ouverture</h4>
                 <span class="mt-2">L’accueil général est ouvert du lundi au vendredi de 8h30 à 12h et de 13h30 à 17h30.
                     Le samedi de 8h30 à 12h.</span>
-
             </div>
         </div>
     </footer>
+        {% block javascripts %} {{ encore_entry_script_tags('app') }} {% endblock %}
     </body>
-{#
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-#}
-    {#<script src="{{ asset('js/jquery.min.js') }}"></script>#}
-{#
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-#}
-
 </html>

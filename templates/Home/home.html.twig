@@ -1,28 +1,29 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-        <div class="row d-flex justify-content-center bg-secondary mt-5 mb-5 m-5">
-            <h1 class="m-4">Médiathèque de la Chapelle Cureaux</h1>
-        </div>
         <section class="bannerUp">
             <div class="row">
-                <div class="col-5">
+                <div class="col-12 d-none d-sm-block">
                     <picture>
-                        <img class="m-3" src="{{ asset('Images/Mediatheque-sa.jpg') }}" alt="Photo de la médiathèque">
+                        <img src="{{ asset('Images/Mediatheque-sa.jpg') }}" alt="Photo de la médiathèque">
                     </picture>
                 </div>
-                <div class="col-7">
-                    <p class="text-left mt-5 m-3">Au tournant du 6e siècle, le roi franc Clovis, récemment converti au christianisme,
-                        fait construire sur une colline de Lutèce une basilique dédiée aux saints Pierre et Paul
-                        dans laquelle il sera inhumé au côté de sa femme Clotilde. Ils y sont en 512 rejoints par
-                        sainte Geneviève, très vénérée patronne des Parisiens dont le vocable s’impose dès le
-                        9e siècle : il désigne tout à la fois la basilique et l’abbaye bénédictine qui se développe
-                        rapidement autour d’elle, et dont on peut encore admirer le clocher du 14e siècle
-                        (appelé aujourd’hui « tour Clovis » en référence à cette antique fondation) dans
-                        l’enceinte de l’actuel lycée Henri IV. Ce double patronage, hagiographique et
-                        royal, marquera au long des siècles l’histoire de l’institution.</p>
+                <div class="row d-flex bg-light mb-3">
+                    <h1 class="m-4">MEDIATHEQUE DE LA CHAPELLE CURREAUX</h1>
                 </div>
+                <div class="row">
+                    <div class="col-12 col-md-7">
+                        <p class="text-left m-4">L’équipe vous accueille et vous oriente dans le choix des nombreux
+                            supports proposés par la médiathèque  : revues, livres cd, film ou dvd, cd… Vous y
+                            trouverez des outils pour vous former,  vous informer et vous divertir. L’espace multimédia
+                            propose des ateliers thématiques et des animations sur le web et les réseaux sociaux.
+                            Des expositions et animations ont lieu tout au long de l’année.<br><br>
 
+                            L’entrée à la médiathèque et à l’espace multimédia est libre et gratuit. Sur place vous
+                            pouvez lire la presse régionale,  vous connecter à internet soit sur les ordinateurs de
+                            l’espace multimédia soit en wifi.</p>
+                    </div>
+                </div>
             </div>
         </section>
 {% endblock %}

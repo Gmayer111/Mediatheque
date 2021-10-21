@@ -1,1 +1,43 @@
-@import "~bootstrap/scss/bootstrap";
+//$primary:       #FFBE0B;
+//$secondary:     #FB5607;
+//$success:       #3A86FF;
+//$info: #ffffff;
+$light: #bfb7b7;
+
+@import "/Applications/MAMP/apps/mediatheque/node_modules/bootstrap/scss/bootstrap";
+
+body {
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, a, li, span {
+  font-family: "Ubuntu Condensed", Quicksand, serif;
+}
+
+a, li, span {
+  font-size: 1.1em;
+}
+
+p {
+  font-family: "Lato", Quicksand, serif;
+  font-size: 1em
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+.bannerUp div img {
+  width: 100vw;
+  height: 500px;
+}
+
+.profilImg div img {
+  width: 300px;
+  height: 250px;
+}
+
+img .bookImg {
+  width: 300px;
+  height: 300px;
+}
