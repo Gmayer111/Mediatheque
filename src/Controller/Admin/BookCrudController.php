@@ -5,7 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Book;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -33,6 +33,7 @@ class BookCrudController extends AbstractCrudController
             TextField::new('author', 'Auteur'),
             TextField::new('genre'),
             ChoiceField::new('availability', 'Disponibilité')->setChoices(['disponible' => "1", 'non disponible' => '0']),
+            DateField::new('publication_date')->hideOnIndex(),
             HiddenField::new('borrower', 'Emprunté par..'),
             TextField::new('picture')->setFormType(VichImageType::class)->hideOnIndex(),
             ImageField::new('filename', 'Couverture')->setBasePath('/images/books')->onlyOnIndex(),
