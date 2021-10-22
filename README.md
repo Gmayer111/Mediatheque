@@ -23,3 +23,14 @@ Déploiement en production
 - Par défaut Heroku va jouer le composer install, il faut donc indiquer à heroku de faire les migrations de la base de données
 - Modification du fichier .htacces qui va venir indiquer à apache comment réécrire les url avec le bundle composer require symfony/apache-pack
 - Push vers le remote heroku avec la commande git push heroku main pour verssionner mon projet vers le dépôt heroku
+
+
+Droits et privilèges  
+
+- Pour donner tous les droits et privilèges à mon utilisateurs “Admin” j’ai utilisé la commande SQL suivante sur mon terminal : 
+
+mysql> GRANT ALL PRIVILEGES ONdatabase_name.*TO 'username'@'localhost'; 
+
+- Puis j’ai sauvegardé mes modifications : 
+
+mysql> FLUSH PRIVILEGES ; 
