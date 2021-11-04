@@ -28,7 +28,7 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180, unique=false)
      * @ORM\OneToMany(targetEntity=Book::class, mappedBy="borrower")
      */
     private $username;
@@ -119,10 +119,13 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @param mixed $username
+     * @return Borrower
      */
-    public function setUsername($username): void
+    public function setUsername($username): self
     {
         $this->username = $username;
+
+        return $this;
     }
 
 
@@ -138,9 +141,11 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @param mixed $firstname
      */
-    public function setFirstname($firstname): void
+    public function setFirstname($firstname): self
     {
         $this->firstname = $firstname;
+        return $this;
+
     }
 
     /**
@@ -154,9 +159,10 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @param mixed $lastname
      */
-    public function setLastname($lastname): void
+    public function setLastname($lastname): self
     {
         $this->lastname = $lastname;
+        return $this;
     }
 
     /**
@@ -169,10 +175,12 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @param mixed $address
+     * @return Borrower
      */
-    public function setAddress($address): void
+    public function setAddress($address): self
     {
         $this->address = $address;
+        return $this;
     }
 
 
@@ -188,9 +196,11 @@ class Borrower implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @param mixed $date_of_birth
      */
-    public function setDateOfBirth($date_of_birth): void
+    public function setDateOfBirth($date_of_birth): self
     {
         $this->date_of_birth = $date_of_birth;
+
+        return $this;
     }
 
 

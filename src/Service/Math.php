@@ -1,0 +1,1 @@
+<?phpnamespace App\Service;class Math{    public static function plus (int $v1, int $v2): int    {        return $v1 + $v2;    }    public static function multiplication (int $v1, int $v2): int    {        $tmp = 0;        for ($i = 0; $i < $v2; $i++) {            $tmp = self::plus($tmp, $v1);        }        return $tmp;    }}
