@@ -1,6 +1,6 @@
 # Mediatheque
 
-Déploiement en local
+## Déploiement en local
 
 1. Installation du serveur local MAMP sur mon système d'exploitation (macOS BIG SUR)
 2. Ajout du chemin dans le fichier httpd-vhosts.conf vers mon futur projet Symfony
@@ -13,7 +13,7 @@ Déploiement en local
 
 
 
-Déploiement en production
+## Déploiement en production
 
 - Tout d’abord initialisation d’un projet Heroku avec la commande heroku create
 - Création du fichier procfile avec la commande echo 'web: heroku-php-apache2 public/' > Procfile
@@ -25,7 +25,7 @@ Déploiement en production
 - Push vers le remote heroku avec la commande git push heroku main pour verssionner mon projet vers le dépôt heroku
 
 
-Droits et privilèges  
+## Droits et privilèges  
 
 - Pour donner tous les droits et privilèges à mon utilisateurs “Admin” j’ai utilisé la commande SQL suivante sur mon terminal : 
 
